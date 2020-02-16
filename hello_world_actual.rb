@@ -1,4 +1,3 @@
-puts "Hello World!"
 require 'net/https'
 
 # download the data
@@ -7,17 +6,14 @@ http = Net::HTTP.new(uri.host, uri.port)
 http.use_ssl = true
 response = http.get(uri.request_uri)
 
-# print the data to the screen
-# puts response.body
-
 require 'json'
 
 my_hash = JSON.parse(response.body)
-#puts my_hash[0]['HostStarTempK']
+
 x = -1
 y = ""
 for i in 0..my_hash.size-1 do
-  puts my_hash[i]['HostStarTempK']
+
 	if my_hash[i]['HostStarTempK'] != ""
 		if my_hash[i]['HostStarTempK'] > x 
 		x = my_hash[i]['HostStarTempK']
@@ -26,5 +22,4 @@ for i in 0..my_hash.size-1 do
 	end
 end
 
-puts x
 puts y
